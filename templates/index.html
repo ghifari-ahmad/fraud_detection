@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Fraud Detection</h1>
+        <form method="POST" action="/check_fraud">
+            
+            <label for="type">Type:</label>
+            <select id="type" name="type" required>
+                <option value="CASH-IN">CASH-IN</option>
+                <option value="CASH-OUT">CASH-OUT</option>
+                <option value="DEBIT">DEBIT</option>
+                <option value="PAYMENT">PAYMENT</option>
+                <option value="TRANSFER">TRANSFER</option>
+            </select>
+            
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" required>
+            
+            <label for="oldbalanceOrg">Old Balance Orig:</label>
+            <input type="number" id="oldbalanceOrg" name="oldbalanceOrg" required>
+            
+            <label for="newbalanceOrig">New Balance Orig:</label>
+            <input type="number" id="newbalanceOrig" name="newbalanceOrig" required>
+            
+            <label for="oldbalanceDest">Old Balance Dest:</label>
+            <input type="number" id="oldbalanceDest" name="oldbalanceDest" required>
+            
+            <label for="newbalanceDest">New Balance Dest:</label>
+            <input type="number" id="newbalanceDest" name="newbalanceDest" required>
+            
+            <button type="submit">Check Fraud</button>
+        </form>
+        {% if result %}
+        <h2>Transaction is: {{ result }}</h2>
+        {% endif %}
+    </div>
+</body>
+</html>
